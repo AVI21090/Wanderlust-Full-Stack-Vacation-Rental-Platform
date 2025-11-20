@@ -21,5 +21,3 @@ Frontend: HTML, CSS, JavaScript
 Backend: (e.g., Node.js with Express)
 
 Database: (e.g., MongoDB)
-
-XYZ
