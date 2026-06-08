@@ -1,0 +1,150 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-4">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+            My Bookings
+        </h1>
+
+        <p class="text-muted">
+            Manage all your property reservations
+        </p>
+
+    </div>
+
+    <% if(bookings.length === 0){ %>
+
+        <div class="card shadow-sm border-0 text-center p-5">
+
+            <h3>
+                No Bookings Yet
+            </h3>
+
+            <p class="text-muted">
+                Your confirmed bookings will appear here.
+            </p>
+
+            <a
+                href="/listings"
+                class="btn btn-success mt-3"
+            >
+                Explore Properties
+            </a>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="row">
+
+            <% bookings.forEach(booking => { %>
+
+                <div class="col-lg-6 mb-4">
+
+                    <div class="card shadow border-0 h-100">
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                                <h4 class="fw-bold">
+
+                                    <%= booking.listing
+                                    ? booking.listing.title
+                                    : "Listing Deleted" %>
+
+                                </h4>
+
+                                <span class="badge bg-success fs-6">
+
+                                    <%= booking.status %>
+
+                                </span>
+
+                            </div>
+
+                            <hr>
+
+                            <p>
+
+                                📅
+                                <strong>Check In:</strong>
+
+                                <%= new Date(
+                                booking.checkIn
+                                ).toDateString() %>
+
+                            </p>
+
+                            <p>
+
+                                📅
+                                <strong>Check Out:</strong>
+
+                                <%= new Date(
+                                booking.checkOut
+                                ).toDateString() %>
+
+                            </p>
+
+                            <p>
+
+                                👥
+                                <strong>Guests:</strong>
+
+                                <%= booking.guests %>
+
+                            </p>
+
+                            <p>
+
+                                💰
+                                <strong>Total Price:</strong>
+
+                                ₹ <%= booking.totalPrice || 0 %>
+
+                            </p>
+
+                            <p>
+
+                                🕒
+                                <strong>Booked On:</strong>
+
+                                <%= new Date(
+                                booking.createdAt
+                                ).toDateString() %>
+
+                            </p>
+
+                            <div class="mt-4">
+
+                                <form
+                                    action="/bookings/<%= booking._id %>?_method=DELETE"
+                                    method="POST"
+                                >
+
+                                    <button
+                                        class="btn btn-danger w-100"
+                                    >
+                                        Cancel Booking
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } %>
+
+</div>

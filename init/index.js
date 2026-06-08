@@ -1,8 +1,10 @@
+require("dotenv").config();
+
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = process.env.ATLASDB_URL;
 
 main()
   .then(() => {
@@ -17,10 +19,20 @@ async function main() {
 }
 
 const initDB = async () => {
+
   await Listing.deleteMany({});
-  initData.data.map =  initData.data.map((obj)=>({...obj, owner:"9743-A2X-56B"}));
-  await Listing.insertMany(initData.data);
+
+  const updatedData = initData.data.map((obj) => ({
+    ...obj,
+    geometry: {
+      type: "Point",
+      coordinates: [77.2090, 28.6139]
+    }
+  }));
+
+  await Listing.insertMany(updatedData);
+
   console.log("data was initialized");
 };
 
-initDB(); 
+initDB();

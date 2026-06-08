@@ -1,0 +1,105 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+    <h1>Admin Dashboard</h1>
+
+    <hr>
+
+    <!-- Statistics -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-3">
+            <div class="card p-3 text-center">
+                <h6>Total Users</h6>
+                <h2><%= totalUsers %></h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3 text-center">
+                <h6>Total Listings</h6>
+                <h2><%= totalListings %></h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3 text-center">
+                <h6>Total Bookings</h6>
+                <h2><%= totalBookings %></h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3 text-center">
+                <h6>Total Reviews</h6>
+                <h2><%= totalReviews %></h2>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Management Cards -->
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <a href="/admin/users"
+               class="text-decoration-none text-dark">
+
+                <div class="card p-3">
+                    <h5>Users</h5>
+                    <p>Manage Users</p>
+                </div>
+
+            </a>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <a href="/admin/listings"
+               class="text-decoration-none text-dark">
+
+                <div class="card p-3">
+                    <h5>Listings</h5>
+                    <p>Manage Listings</p>
+                </div>
+
+            </a>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <a href="/admin/bookings"
+               class="text-decoration-none text-dark">
+
+                <div class="card p-3">
+                    <h5>Bookings</h5>
+                    <p>Manage Bookings</p>
+                </div>
+
+            </a>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <a href="/admin/reviews"
+               class="text-decoration-none text-dark">
+
+                <div class="card p-3">
+                    <h5>Reviews</h5>
+                    <p>Manage Reviews</p>
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,65 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+    <h1>All Reviews</h1>
+
+    <hr>
+
+    <table class="table table-bordered">
+
+        <thead>
+
+            <tr>
+                <th>Comment</th>
+                <th>Rating</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <% reviews.forEach(review => { %>
+
+                <tr>
+
+                    <td>
+                        <%= review.Comment %>
+                    </td>
+
+                    <td>
+                        <%= review.rating %>
+                    </td>
+
+                    <td>
+                        <%= review.author?.username || "N/A" %>
+                    </td>
+
+                    <td>
+
+                        <form
+                            action="/admin/reviews/<%= review._id %>?_method=DELETE"
+                            method="POST"
+                        >
+
+                            <button
+                                class="btn btn-danger btn-sm"
+                            >
+                                Delete
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+</div>

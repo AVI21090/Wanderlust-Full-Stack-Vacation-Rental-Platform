@@ -1,0 +1,66 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+    <h1>All Bookings</h1>
+
+    <hr>
+
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Listing</th>
+                <th>Guests</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <% bookings.forEach(booking => { %>
+
+                <tr>
+
+                    <td>
+                        <%= booking.user?.username || "N/A" %>
+                    </td>
+
+                    <td>
+                        <%= booking.listing?.title || "N/A" %>
+                    </td>
+
+                    <td>
+                        <%= booking.guests %>
+                    </td>
+
+                    <td>
+                        <%= booking.status %>
+                    </td>
+
+                    <td>
+
+                        <form
+                            action="/admin/bookings/<%= booking._id %>?_method=DELETE"
+                            method="POST"
+                        >
+                            <button
+                                class="btn btn-danger btn-sm"
+                            >
+                                Cancel
+                            </button>
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+</div>
