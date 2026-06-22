@@ -30,6 +30,7 @@ module.exports.reviewSchema = Joi.object({
 // BOOKING VALIDATION
 module.exports.bookingSchema = Joi.object({
   booking: Joi.object({
+
     listing: Joi.string().required(),
 
     checkIn: Joi.date().required(),
@@ -39,6 +40,15 @@ module.exports.bookingSchema = Joi.object({
     guests: Joi.number()
       .min(1)
       .required(),
+
+    paymentId: Joi.string()
+      .allow("", null),
+
+    orderId: Joi.string()
+      .allow("", null),
+
+    paymentStatus: Joi.string()
+      .allow("", null)
 
   }).required(),
 });

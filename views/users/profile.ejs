@@ -1,0 +1,120 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="container py-5">
+
+        <div class="text-center mb-5">
+
+            <h1>
+
+                👤 My Profile
+
+            </h1>
+
+            <p class="text-muted">
+
+                Manage your Wanderlust account
+
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-6">
+
+                <div class="card shadow border-0">
+
+                    <div class="card-body text-center p-5">
+
+                        <h2>
+
+                            <%= user.username %>
+
+                        </h2>
+
+                        <p>
+
+                            📧 <%= user.email %>
+
+                        </p>
+
+                        <hr>
+
+                        <div class="row mt-4">
+                            <a href="/wishlist" class="col-4 text-decoration-none text-dark">
+
+                                <h3>
+
+                                    ❤️
+
+                                </h3>
+
+                                <h4>
+
+                                    <%= user.wishlist.length %>
+
+                                </h4>
+
+                                <p>
+
+                                    Wishlist
+
+                                </p>
+
+                            </a>
+
+                            <a href="/listings" class="col-4 text-decoration-none text-dark">
+
+                                <h3>
+
+                                    🏠
+
+                                </h3>
+
+                                <h4>
+
+                                    <%= myListings %>
+
+                                </h4>
+
+                                <p>
+
+                                    Listings
+
+                                </p>
+
+                            </a>
+
+                            <a href="/bookings" class="col-4 text-decoration-none text-dark">
+
+                                <h3>
+
+                                    📅
+
+                                </h3>
+
+                                <h4>
+
+                                    <%= myBookings %>
+
+                                </h4>
+
+                                <p>
+
+                                    Bookings
+
+                                </p>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>

@@ -1,150 +1,136 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="container py-4">
+    <div class="container py-4">
 
-    <div class="text-center mb-5">
+        <div class="text-center mb-5">
 
-        <h1 class="fw-bold">
-            My Bookings
-        </h1>
-
-        <p class="text-muted">
-            Manage all your property reservations
-        </p>
-
-    </div>
-
-    <% if(bookings.length === 0){ %>
-
-        <div class="card shadow-sm border-0 text-center p-5">
-
-            <h3>
-                No Bookings Yet
-            </h3>
+            <h1 class="fw-bold">
+                My Bookings
+            </h1>
 
             <p class="text-muted">
-                Your confirmed bookings will appear here.
+                Manage all your property reservations
             </p>
-
-            <a
-                href="/listings"
-                class="btn btn-success mt-3"
-            >
-                Explore Properties
-            </a>
 
         </div>
 
-    <% } else { %>
+        <% if(bookings.length===0){ %>
 
-        <div class="row">
+            <div class="card shadow-sm border-0 text-center p-5">
 
-            <% bookings.forEach(booking => { %>
+                <h3>
+                    No Bookings Yet
+                </h3>
 
-                <div class="col-lg-6 mb-4">
+                <p class="text-muted">
+                    Your confirmed bookings will appear here.
+                </p>
 
-                    <div class="card shadow border-0 h-100">
+                <a href="/listings" class="btn btn-success mt-3">
+                    Explore Properties
+                </a>
 
-                        <div class="card-body">
+            </div>
 
-                            <div class="d-flex justify-content-between align-items-center mb-3">
+            <% } else { %>
 
-                                <h4 class="fw-bold">
+                <div class="row">
 
-                                    <%= booking.listing
-                                    ? booking.listing.title
-                                    : "Listing Deleted" %>
+                    <% bookings.forEach(booking=> { %>
 
-                                </h4>
+                        <div class="col-lg-6 mb-4">
 
-                                <span class="badge bg-success fs-6">
+                            <div class="card shadow border-0 h-100">
 
-                                    <%= booking.status %>
+                                <% if(booking.listing){ %>
 
-                                </span>
+<img
 
-                            </div>
+src="<%= booking.listing.image.url %>"
 
-                            <hr>
+class="card-img-top"
 
-                            <p>
+style="height:220px; object-fit:cover;"
 
-                                📅
-                                <strong>Check In:</strong>
+>
 
-                                <%= new Date(
-                                booking.checkIn
-                                ).toDateString() %>
+<% } %>
 
-                            </p>
+                                <div class="card-body">
 
-                            <p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
 
-                                📅
-                                <strong>Check Out:</strong>
+                                        <h4 class="fw-bold">
 
-                                <%= new Date(
-                                booking.checkOut
-                                ).toDateString() %>
+                                            <%= booking.listing ? booking.listing.title : "Listing Deleted" %>
 
-                            </p>
+                                        </h4>
 
-                            <p>
+                                        <span class="badge bg-success fs-6">
 
-                                👥
-                                <strong>Guests:</strong>
+<%= booking.paymentStatus || "Paid" %>
 
-                                <%= booking.guests %>
+</span>
 
-                            </p>
+                                    </div>
 
-                            <p>
+                                    <hr>
 
-                                💰
-                                <strong>Total Price:</strong>
+                                    <p>
 
-                                ₹ <%= booking.totalPrice || 0 %>
+                                        📅
+                                        <strong>Check In:</strong>
 
-                            </p>
+                                        <%= new Date( booking.checkIn ).toDateString() %>
 
-                            <p>
+                                    </p>
 
-                                🕒
-                                <strong>Booked On:</strong>
+                                    <p>
 
-                                <%= new Date(
-                                booking.createdAt
-                                ).toDateString() %>
+                                        📅
+                                        <strong>Check Out:</strong>
 
-                            </p>
+                                        <%= new Date( booking.checkOut ).toDateString() %>
 
-                            <div class="mt-4">
+                                    </p>
 
-                                <form
-                                    action="/bookings/<%= booking._id %>?_method=DELETE"
-                                    method="POST"
-                                >
+                                    <p>
 
-                                    <button
-                                        class="btn btn-danger w-100"
-                                    >
-                                        Cancel Booking
-                                    </button>
+                                        👥
+                                        <strong>Guests:</strong>
 
-                                </form>
+                                        <%= booking.guests %>
+
+                                    </p>
+
+                              
+
+                                    <div class="mt-4 d-grid gap-2">
+
+                                        <a href="/bookings/invoice/<%= booking._id %>" class="btn btn-primary">
+                                            📄 Download Invoice
+                                        </a>
+
+                                        <form action="/bookings/<%= booking._id %>?_method=DELETE" method="POST">
+
+                                            <button class="btn btn-danger w-100">
+                                                Cancel Booking
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
 
                             </div>
 
                         </div>
 
-                    </div>
+                        <% }) %>
 
                 </div>
 
-            <% }) %>
+                <% } %>
 
-        </div>
-
-    <% } %>
-
-</div>
+    </div>

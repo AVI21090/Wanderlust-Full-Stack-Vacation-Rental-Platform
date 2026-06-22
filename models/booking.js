@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
+
     listing: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Listing",
@@ -37,8 +38,32 @@ const bookingSchema = new mongoose.Schema({
     status: {
         type: String,
         default: "Confirmed"
+    },
+
+    // ======================
+    // PAYMENT DETAILS
+    // ======================
+
+    paymentId: {
+        type: String,
+        default: ""
+    },
+
+    orderId: {
+        type: String,
+        default: ""
+    },
+
+    paymentStatus: {
+        type: String,
+        default: "Pending"
     }
 
-}, { timestamps: true });
+}, {
+    timestamps: true
+});
 
-module.exports = mongoose.model("Booking", bookingSchema);
+module.exports = mongoose.model(
+    "Booking",
+    bookingSchema
+);

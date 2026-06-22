@@ -26,11 +26,14 @@ const listingRouter = require("./routes/listing");
 const reviewsRouter = require("./routes/review");
 const userRouter = require("./routes/user");
 const bookingRouter = require("./routes/booking");
+const tripPlannerRouter = require("./routes/tripPlanner");
+const travelAssistantRouter = require("./routes/travelAssistant");
+const wishlistRouter = require("./routes/wishlist");
+
 
 const dbUrl =
   process.env.ATLASDB_URL ||
   "mongodb://127.0.0.1:27017/wanderlust";
-
 // ======================
 // DATABASE CONNECTION
 // ======================
@@ -121,10 +124,31 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/privacy",(req,res)=>{
+
+res.render("privacy");
+
+});
+
+app.get("/terms",(req,res)=>{
+
+res.render("terms");
+
+});
+
+app.get("/contact",(req,res)=>{
+
+res.render("contact");
+
+});
+
 // ======================
 // ROUTES
 // ======================
 
+app.use("/trip-planner", tripPlannerRouter);
+app.use("/travel-assistant", travelAssistantRouter);
+app.use("/wishlist", wishlistRouter);
 app.use("/listings", listingRouter);
 
 app.use(

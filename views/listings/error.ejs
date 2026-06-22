@@ -1,0 +1,113 @@
+<% layout("/layouts/boilerplate") %>
+
+    <style>
+        .error-container {
+
+            min-height: 70vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+        .error-card {
+
+            max-width: 700px;
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 25px;
+
+            padding: 3rem;
+
+            text-align: center;
+
+        }
+
+        .error-icon {
+
+            font-size: 5rem;
+
+            color: #fe424d;
+
+            margin-bottom: 1rem;
+
+        }
+
+        .error-title {
+
+            font-size: 3rem;
+
+            font-weight: 700;
+
+            margin-bottom: 1rem;
+
+        }
+
+        .error-message {
+
+            font-size: 1.2rem;
+
+            color: #6c757d;
+
+            margin-bottom: 2rem;
+
+        }
+
+        .home-btn {
+
+            background: #111827;
+
+            border: none;
+
+            border-radius: 30px;
+
+            padding: 12px 25px;
+
+            font-weight: 600;
+
+        }
+
+        .home-btn:hover {
+
+            background: black;
+
+        }
+    </style>
+
+    <div class="error-container">
+
+        <div class="card shadow-lg error-card">
+
+            <div class="error-icon">
+
+                ⚠️
+
+            </div>
+
+            <h1 class="error-title">
+
+                Oops!
+
+            </h1>
+
+            <p class="error-message">
+
+                <%= message %>
+
+            </p>
+
+            <a href="/listings" class="btn home-btn text-white">
+
+                🏠 Back To Home
+
+            </a>
+
+        </div>
+
+    </div>

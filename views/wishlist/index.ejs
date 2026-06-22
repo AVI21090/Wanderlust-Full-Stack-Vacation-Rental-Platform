@@ -1,0 +1,139 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-4">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+
+            ❤️ My Wishlist
+
+        </h1>
+
+        <p class="text-muted">
+
+            Your favourite saved stays
+
+        </p>
+
+    </div>
+
+    <% if(allListings.length === 0){ %>
+
+        <div class="card border-0 shadow-sm p-5 text-center">
+
+            <h3>
+
+                Wishlist is Empty
+
+            </h3>
+
+            <p class="text-muted">
+
+                Save your favourite stays here.
+
+            </p>
+
+            <a
+
+                href="/listings"
+
+                class="btn btn-dark mt-3"
+
+            >
+
+                Explore Listings
+
+            </a>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="row">
+
+            <% for(let listing of allListings){ %>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <div class="card shadow border-0 h-100">
+
+                        <img
+
+                            src="<%= listing.image.url %>"
+
+                            class="card-img-top"
+
+                            style="height:250px; object-fit:cover;"
+
+                        >
+
+                        <div class="card-body">
+
+                            <h5 class="fw-bold">
+
+                                <%= listing.title %>
+
+                            </h5>
+
+                            <p>
+
+                                📍 <%= listing.location %>
+
+                            </p>
+
+                            <p class="text-success fw-bold">
+
+                                ₹ <%= listing.price.toLocaleString("en-IN") %>/night
+
+                            </p>
+
+                            <div class="d-grid gap-2 mt-3">
+
+                                <a
+
+                                    href="/listings/<%= listing._id %>"
+
+                                    class="btn btn-dark"
+
+                                >
+
+                                    View Listing
+
+                                </a>
+
+                                <form
+
+                                    action="/wishlist/<%= listing._id %>?_method=DELETE"
+
+                                    method="POST"
+
+                                >
+
+                                    <button
+
+                                        class="btn btn-outline-danger w-100"
+
+                                    >
+
+                                        Remove ❤️
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    <% } %>
+
+</div>

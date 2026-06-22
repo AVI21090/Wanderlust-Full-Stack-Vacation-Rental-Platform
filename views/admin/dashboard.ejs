@@ -1,105 +1,485 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="container mt-4">
+<style>
 
-    <h1>Admin Dashboard</h1>
+.dashboard-hero{
 
-    <hr>
+text-align:center;
 
-    <!-- Statistics -->
+margin-bottom:4rem;
 
-    <div class="row mb-4">
+}
 
-        <div class="col-md-3">
-            <div class="card p-3 text-center">
-                <h6>Total Users</h6>
-                <h2><%= totalUsers %></h2>
-            </div>
-        </div>
+.dashboard-hero h1{
 
-        <div class="col-md-3">
-            <div class="card p-3 text-center">
-                <h6>Total Listings</h6>
-                <h2><%= totalListings %></h2>
-            </div>
-        </div>
+font-size:3.2rem;
 
-        <div class="col-md-3">
-            <div class="card p-3 text-center">
-                <h6>Total Bookings</h6>
-                <h2><%= totalBookings %></h2>
-            </div>
-        </div>
+font-weight:700;
 
-        <div class="col-md-3">
-            <div class="card p-3 text-center">
-                <h6>Total Reviews</h6>
-                <h2><%= totalReviews %></h2>
-            </div>
-        </div>
+}
 
-    </div>
+.dashboard-hero p{
 
-    <!-- Management Cards -->
+font-size:1.1rem;
 
-    <div class="row">
+color:#6c757d;
 
-        <div class="col-md-3">
+}
 
-            <a href="/admin/users"
-               class="text-decoration-none text-dark">
+.stats-card{
 
-                <div class="card p-3">
-                    <h5>Users</h5>
-                    <p>Manage Users</p>
-                </div>
+border:none;
 
-            </a>
+border-radius:22px;
 
-        </div>
+padding:2rem;
 
-        <div class="col-md-3">
+text-align:center;
 
-            <a href="/admin/listings"
-               class="text-decoration-none text-dark">
+transition:0.3s;
 
-                <div class="card p-3">
-                    <h5>Listings</h5>
-                    <p>Manage Listings</p>
-                </div>
+height:100%;
 
-            </a>
+background:#fff;
 
-        </div>
+}
 
-        <div class="col-md-3">
+.stats-card:hover{
 
-            <a href="/admin/bookings"
-               class="text-decoration-none text-dark">
+transform:translateY(-8px);
 
-                <div class="card p-3">
-                    <h5>Bookings</h5>
-                    <p>Manage Bookings</p>
-                </div>
+box-shadow:0 15px 35px rgba(0,0,0,0.12);
 
-            </a>
+}
 
-        </div>
+.stats-icon{
 
-        <div class="col-md-3">
+font-size:2rem;
 
-            <a href="/admin/reviews"
-               class="text-decoration-none text-dark">
+margin-bottom:1rem;
 
-                <div class="card p-3">
-                    <h5>Reviews</h5>
-                    <p>Manage Reviews</p>
-                </div>
+}
 
-            </a>
+.stats-value{
 
-        </div>
+font-size:2rem;
 
-    </div>
+font-weight:700;
+
+}
+
+.stats-title{
+
+color:#6c757d;
+
+font-weight:600;
+
+}
+
+.revenue-card{
+
+background:#198754;
+
+color:white;
+
+}
+
+.management-card{
+
+border:none;
+
+border-radius:22px;
+
+padding:2rem;
+
+text-align:center;
+
+height:100%;
+
+transition:0.3s;
+
+background:#fff;
+
+}
+
+.management-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.12);
+
+}
+
+.management-card i{
+
+font-size:2.2rem;
+
+margin-bottom:1rem;
+
+color:#fe424d;
+
+}
+
+.management-card h5{
+
+font-weight:700;
+
+}
+
+.quick-actions{
+
+margin-bottom:4rem;
+
+}
+
+.quick-btn{
+
+border-radius:30px;
+
+padding:12px 22px;
+
+font-weight:600;
+
+}
+
+</style>
+
+
+
+<div class="container py-5">
+
+
+<div class="dashboard-hero">
+
+<h1>
+
+📊 Admin Dashboard
+
+</h1>
+
+<p>
+
+Monitor your platform, users and business growth.
+
+</p>
+
+</div>
+
+
+
+<div class="quick-actions text-center">
+
+<a
+
+href="/listings"
+
+class="btn btn-dark quick-btn me-3"
+
+>
+
+🏠 View Website
+
+</a>
+
+<a
+
+href="/listings/new"
+
+class="btn btn-danger quick-btn"
+
+>
+
+➕ Add Listing
+
+</a>
+
+</div>
+
+
+
+<div class="row g-4 mb-5">
+
+
+<div class="col-lg col-md-6">
+
+<div class="card stats-card">
+
+<div class="stats-icon">
+
+👥
+
+</div>
+
+<div class="stats-value">
+
+<%= totalUsers %>
+
+</div>
+
+<div class="stats-title">
+
+Users
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg col-md-6">
+
+<div class="card stats-card">
+
+<div class="stats-icon">
+
+🏠
+
+</div>
+
+<div class="stats-value">
+
+<%= totalListings %>
+
+</div>
+
+<div class="stats-title">
+
+Listings
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg col-md-6">
+
+<div class="card stats-card">
+
+<div class="stats-icon">
+
+📅
+
+</div>
+
+<div class="stats-value">
+
+<%= totalBookings %>
+
+</div>
+
+<div class="stats-title">
+
+Bookings
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg col-md-6">
+
+<div class="card stats-card">
+
+<div class="stats-icon">
+
+⭐
+
+</div>
+
+<div class="stats-value">
+
+<%= totalReviews %>
+
+</div>
+
+<div class="stats-title">
+
+Reviews
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-4">
+
+<div class="card stats-card revenue-card">
+
+<div class="stats-icon">
+
+💰
+
+</div>
+
+<div class="stats-value">
+
+₹ <%= totalRevenue.toLocaleString("en-IN") %>
+
+</div>
+
+<div>
+
+Revenue
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="row g-4">
+
+
+<div class="col-lg-3 col-md-6">
+
+<a
+
+href="/admin/users"
+
+class="text-decoration-none text-dark"
+
+>
+
+<div class="card management-card">
+
+<i class="fa-solid fa-users"></i>
+
+<h5>
+
+Users
+
+</h5>
+
+<p>
+
+Manage platform users
+
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+
+
+<div class="col-lg-3 col-md-6">
+
+<a
+
+href="/admin/listings"
+
+class="text-decoration-none text-dark"
+
+>
+
+<div class="card management-card">
+
+<i class="fa-solid fa-house"></i>
+
+<h5>
+
+Listings
+
+</h5>
+
+<p>
+
+Manage all listings
+
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+
+
+<div class="col-lg-3 col-md-6">
+
+<a
+
+href="/admin/bookings"
+
+class="text-decoration-none text-dark"
+
+>
+
+<div class="card management-card">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<h5>
+
+Bookings
+
+</h5>
+
+<p>
+
+Manage all bookings
+
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+
+
+<div class="col-lg-3 col-md-6">
+
+<a
+
+href="/admin/reviews"
+
+class="text-decoration-none text-dark"
+
+>
+
+<div class="card management-card">
+
+<i class="fa-solid fa-star"></i>
+
+<h5>
+
+Reviews
+
+</h5>
+
+<p>
+
+Manage all reviews
+
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+
+</div>
 
 </div>

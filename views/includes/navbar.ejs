@@ -1,108 +1,378 @@
 <style>
-  .search-btn {
-    background-color: #fe424d;
-    color: #fff;
-    border-radius: 25px;
-    padding: 0 1rem 0 1rem;
-  }
 
-  .search-btn:hover {
-    background-color: #fe424d;
-    color: #fff;
-  }
+.navbar{
 
-  .search-btn i {
-    display: inline;
-    margin-right: 0.5rem;
-  }
+padding:14px 0;
 
-  .search-inp {
-    border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 1rem;
-  }
+background:#fff !important;
+
+border-bottom:1px solid #ececec;
+
+}
+
+.navbar-brand{
+
+font-size:1.7rem;
+
+font-weight:700;
+
+color:#fe424d !important;
+
+transition:0.3s;
+
+}
+
+.navbar-brand:hover{
+
+transform:scale(1.03);
+
+}
+
+.nav-link{
+
+font-weight:600;
+
+margin:0 0.4rem;
+
+color:#222 !important;
+
+transition:0.3s;
+
+border-radius:12px;
+
+padding:8px 12px !important;
+
+}
+
+.nav-link:hover{
+
+background:#f5f5f5;
+
+color:#fe424d !important;
+
+}
+
+.search-form{
+
+background:#fff;
+
+border:1px solid #e5e5e5;
+
+border-radius:40px;
+
+padding:6px;
+
+box-shadow:0 4px 15px rgba(0,0,0,0.05);
+
+}
+
+.search-inp{
+
+border:none !important;
+
+outline:none !important;
+
+box-shadow:none !important;
+
+width:260px;
+
+}
+
+.search-btn{
+
+background:#fe424d;
+
+color:#fff;
+
+border:none;
+
+border-radius:30px;
+
+padding:10px 18px;
+
+font-weight:600;
+
+}
+
+.search-btn:hover{
+
+background:#e63946;
+
+color:#fff;
+
+}
+
+.host-btn{
+
+padding:8px 12px !important;
+
+border-radius:12px;
+
+font-weight:600;
+
+}
+
+.logout-btn{
+
+color:#fe424d !important;
+
+font-weight:600;
+
+}
+
+.logout-btn:hover{
+
+background:#fff0f1;
+
+}
+
+@media(max-width:992px){
+
+.search-form{
+
+margin:15px 0;
+
+}
+
+.search-inp{
+
+width:100%;
+
+}
+
+}
+
 </style>
 
-<nav class="navbar navbar-expand-lg bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
 
-    <a class="navbar-brand" href="/listings">
-      <i class="fa-regular fa-compass"></i>
-    </a>
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm">
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div class="container">
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+<a
 
-      <div class="navbar-nav">
+class="navbar-brand d-flex align-items-center gap-2"
 
-        <a class="nav-link" href="/listings">
-          Explore
-        </a>
+href="/listings"
 
-        <% if(currUser){ %>
+>
 
-          <a class="nav-link" href="/bookings">
-            My Bookings
-          </a>
+<i class="fa-solid fa-compass"></i>
 
-        <% } %>
+WanderLust
 
-      </div>
+</a>
 
-      <div class="navbar-nav ms-auto">
 
-        <form class="d-flex" role="search">
-          <input
-            class="form-control me-2 search-inp"
-            type="search"
-            placeholder="Search destinations"
-          />
+<button
 
-          <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            Search
-          </button>
-        </form>
+class="navbar-toggler"
 
-      </div>
+type="button"
 
-      <div class="navbar-nav ms-auto">
+data-bs-toggle="collapse"
 
-        <a class="nav-link" href="/listings/new">
-          Airbnb your home
-        </a>
+data-bs-target="#navbarNav"
 
-        <% if(!currUser) { %>
+>
 
-          <a class="nav-link" href="/signup">
-            <b>Sign Up</b>
-          </a>
+<span class="navbar-toggler-icon"></span>
 
-          <a class="nav-link" href="/login">
-            <b>Log In</b>
-          </a>
+</button>
 
-        <% } else { %>
 
-          <a class="nav-link" href="/logout">
-            <b>Log Out</b>
-          </a>
+<div
 
-        <% } %>
+class="collapse navbar-collapse"
 
-      </div>
+id="navbarNav"
 
-    </div>
-  </div>
+>
+
+<div class="navbar-nav">
+
+<a
+
+class="nav-link"
+
+href="/listings"
+
+>
+
+Explore
+
+</a>
+
+<% if(currUser){ %>
+
+<a
+
+class="nav-link"
+
+href="/trip-planner"
+
+>
+
+✨ Trip Planner
+
+</a>
+
+<a
+
+class="nav-link"
+
+href="/travel-assistant"
+
+>
+
+🤖 AI Assistant
+
+</a>
+
+<a
+
+class="nav-link"
+
+href="/wishlist"
+
+>
+
+❤️ Wishlist
+
+</a>
+
+<a
+
+class="nav-link"
+
+href="/bookings"
+
+>
+
+📅 Bookings
+
+</a>
+
+<% } %>
+
+</div>
+
+
+<div class="mx-auto my-3 my-lg-0">
+
+<form
+
+class="d-flex align-items-center search-form"
+
+action="/listings/search"
+
+method="GET"
+
+>
+
+<input
+
+class="form-control search-inp"
+
+type="search"
+
+name="query"
+
+placeholder="Search beach, mountains..."
+
+required
+
+>
+
+<button
+
+class="btn search-btn"
+
+type="submit"
+
+>
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</button>
+
+</form>
+
+</div>
+
+
+<div class="navbar-nav align-items-center">
+
+<% if(currUser){ %>
+
+<a
+
+class="nav-link host-btn"
+
+href="/listings/new"
+
+>
+
+➕ Add Listing
+
+</a>
+
+<a
+
+class="nav-link"
+
+href="/profile"
+
+>
+
+👤 Profile
+
+</a>
+
+<a
+
+class="nav-link logout-btn"
+
+href="/logout"
+
+>
+
+Logout
+
+</a>
+
+<% } else { %>
+
+<a
+
+class="nav-link"
+
+href="/signup"
+
+>
+
+Sign Up
+
+</a>
+
+<a
+
+class="nav-link"
+
+href="/login"
+
+>
+
+Log In
+
+</a>
+
+<% } %>
+
+</div>
+
+</div>
+
+</div>
+
 </nav>

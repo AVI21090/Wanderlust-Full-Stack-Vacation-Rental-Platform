@@ -46,6 +46,25 @@
                 </p>
 
                 <hr>
+
+                <div class="text-center my-4">
+
+    <form
+        action="/wishlist/<%= listing._id %>"
+        method="POST"
+    >
+
+        <button
+            class="btn btn-danger rounded-pill px-4 py-2 shadow"
+        >
+            <i class="fa-solid fa-heart"></i>
+            Save to Wishlist
+        </button>
+
+    </form>
+
+</div>
+
 <% if(currUser){ %>
 
 <div class="card shadow-sm border-0 mt-4">
@@ -60,13 +79,31 @@
             ₹ <%= listing.price %> / night
         </h5>
 
-        <form action="/bookings/new" method="POST">
+       <form action="/bookings/new" method="POST">
 
-            <input
-                type="hidden"
-                name="booking[listing]"
-                value="<%= listing._id %>"
-            >
+    <input
+        type="hidden"
+        name="booking[listing]"
+        value="<%= listing._id %>"
+    >
+
+    <input
+        type="hidden"
+        name="booking[paymentId]"
+        id="paymentId"
+    >
+
+    <input
+        type="hidden"
+        name="booking[orderId]"
+        id="orderId"
+    >
+
+    <input
+        type="hidden"
+        name="booking[paymentStatus]"
+        id="paymentStatus"
+    >
 
             <div class="row">
 
@@ -154,6 +191,42 @@ document.getElementById("pay-btn")
 .addEventListener("click", async () => {
 
     try {
+        const checkIn = document.querySelector(
+'input[name="booking[checkIn]"]'
+).value;
+
+const checkOut = document.querySelector(
+'input[name="booking[checkOut]"]'
+).value;
+
+const availabilityResponse = await fetch(
+"/bookings/check-availability",
+{
+    method: "POST",
+    headers: {
+        "Content-Type":
+        "application/json"
+    },
+    body: JSON.stringify({
+        listingId:
+        "<%= listing._id %>",
+        checkIn,
+        checkOut
+    })
+}
+);
+
+const availabilityData =
+await availabilityResponse.json();
+
+if(!availabilityData.available){
+
+    alert(
+        availabilityData.message
+    );
+
+    return;
+}
 
         const response = await fetch(
             "/bookings/create-order",
@@ -213,14 +286,29 @@ const options = {
         }
     );
 
-    const result =
-    await verifyResponse.json();
+   const result =
+await verifyResponse.json();
 
-   if(result.success){
+if(result.success){
 
     alert(
         "Payment Verified Successfully!"
     );
+
+    document.getElementById(
+        "paymentId"
+    ).value =
+    response.razorpay_payment_id;
+
+    document.getElementById(
+        "orderId"
+    ).value =
+    response.razorpay_order_id;
+
+    document.getElementById(
+        "paymentStatus"
+    ).value =
+    "Paid";
 
     document.querySelector(
         'form[action="/bookings/new"]'

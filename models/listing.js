@@ -39,14 +39,18 @@ const listingSchema = new Schema(
       required: true,
       trim: true,
     },
+country: {
+  type: String,
+  required: true,
+  trim: true,
+},
 
-    country: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+category: {
+  type: String,
+  default: "Trending",
+},
 
-    reviews: [
+reviews: [
       {
         type: Schema.Types.ObjectId,
         ref: "Review",

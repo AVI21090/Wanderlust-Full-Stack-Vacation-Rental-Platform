@@ -8,28 +8,50 @@ const {
     validateBooking,
 } = require("../middleware");
 
-// Show all bookings
+// ======================
+// SHOW BOOKINGS
+// ======================
+
 router.get(
     "/",
     LoggedIn,
     bookingController.showBookings
 );
 
-// Create Razorpay Order
+// ======================
+// CHECK AVAILABILITY
+// ======================
+
+router.post(
+    "/check-availability",
+    LoggedIn,
+    bookingController.checkAvailability
+);
+
+// ======================
+// CREATE RAZORPAY ORDER
+// ======================
+
 router.post(
     "/create-order",
     LoggedIn,
     bookingController.createOrder
 );
 
-// Verify Payment
+// ======================
+// VERIFY PAYMENT
+// ======================
+
 router.post(
     "/verify-payment",
     LoggedIn,
     bookingController.verifyPayment
 );
 
-// Create booking
+// ======================
+// CREATE BOOKING
+// ======================
+
 router.post(
     "/new",
     LoggedIn,
@@ -37,7 +59,20 @@ router.post(
     bookingController.createBooking
 );
 
-// Cancel booking
+// ======================
+// DOWNLOAD INVOICE
+// ======================
+
+router.get(
+    "/invoice/:id",
+    LoggedIn,
+    bookingController.downloadInvoice
+);
+
+// ======================
+// CANCEL BOOKING
+// ======================
+
 router.delete(
     "/:id",
     LoggedIn,
