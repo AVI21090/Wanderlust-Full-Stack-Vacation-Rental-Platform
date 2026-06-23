@@ -162,6 +162,9 @@ app.use("/", userRouter);
 
  app.use("/admin", adminRouter);
 
+ app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 // ======================
 // 404 HANDLER
 // ======================
