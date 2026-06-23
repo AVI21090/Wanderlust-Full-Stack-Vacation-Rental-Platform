@@ -4,7 +4,7 @@ const router = express.Router();
 const { LoggedIn } = require("../middleware");
 
 const wishlistController =
-require("../Controllers/wishlist");
+require("../controllers/wishlist");
 
 // Show Wishlist
 router.get(

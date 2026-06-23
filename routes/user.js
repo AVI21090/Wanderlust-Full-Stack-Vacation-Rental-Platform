@@ -4,7 +4,7 @@ const passport = require("passport");
 
 const router = express.Router();
 
-const usersController = require("../Controllers/users");
+const usersController = require("../controllers/users");
 
 const {
 

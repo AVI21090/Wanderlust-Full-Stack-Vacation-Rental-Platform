@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const listingController = require("../Controllers/listing");
+const listingController = require("../controllers/listing");
 
 const {
 

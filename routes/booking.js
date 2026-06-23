@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const bookingController = require("../Controllers/booking");
+const bookingController = require("../controllers/booking");
 
 const {
     LoggedIn,

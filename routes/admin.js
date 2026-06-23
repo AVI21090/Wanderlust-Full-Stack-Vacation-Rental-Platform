@@ -3,8 +3,7 @@ const router = express.Router();
 
 const { LoggedIn, isAdmin } = require("../middleware");
 
-const adminController =
-require("../Controllers/admin");
+const adminController = require("../controllers/admin");
 
 // Dashboard
 router.get(
